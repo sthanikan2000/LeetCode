@@ -12,6 +12,19 @@
 -- from Activity
 -- ;
 
+
+#from Solutions at discussion
+-- SELECT
+--   ROUND(COUNT(DISTINCT player_id) / (SELECT COUNT(DISTINCT player_id) FROM Activity), 2) AS fraction
+-- FROM
+--   Activity
+-- WHERE
+--   (player_id, DATE_SUB(event_date, INTERVAL 1 DAY))
+--   IN (
+--     SELECT player_id, MIN(event_date) AS first_login FROM Activity GROUP BY player_id
+--   );
+
+-- # My first passed solution
 select ROUND(AVG(X.player_id=A.player_id and A.player_id is not null),2) fraction
 from (
         select player_id,MIN(event_date) first_play, DATE_ADD(MIN(event_date), INTERVAL 1 DAY) next_day
