@@ -1,3 +1,5 @@
+// Problem can be solved using python with return len(s.rstrip().split()[-1])
+// But this solution is for the languages don't have rstrip, split
 class Solution {
 public:
     int lengthOfLastWord(string s) {
