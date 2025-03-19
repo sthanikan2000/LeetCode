@@ -1,6 +1,15 @@
 class Solution:
     def rangeBitwiseAnd(self, left: int, right: int) -> int:
-        ### Solution with only bit operations and comparison
+        x=0
+        while left and right and left != right:
+            left >>= 1
+            right >>= 1
+            x += 1
+        if left != right:
+            return 0
+        return left << x
+        '''
+        ### ---------- Solution with only bit operations and comparison - PASSED ALL Test cases ---------------------------------
         x = 1
         while left>=x and right>=x:
             x = x << 1
@@ -19,9 +28,10 @@ class Solution:
             x = x >> 1
 
         return res
+        '''
 
         '''
-        #### Done by converting to string - PASSED ALL Test cases
+        #### ------------------ Done by converting to string - PASSED ALL Test cases -------------------
         def int_to_bin_str(num):
             if num == 0:
                 return \0\
