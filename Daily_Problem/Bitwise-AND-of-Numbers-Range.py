@@ -1,5 +1,27 @@
 class Solution:
     def rangeBitwiseAnd(self, left: int, right: int) -> int:
+        ### Solution with only bit operations and comparison
+        x = 1
+        while left>=x and right>=x:
+            x = x << 1
+        if left>=x or right>=x:
+            return 0
+        
+        # print(bin(x))
+
+        res = 0
+        while x:
+            y = left & x
+            z = right & x
+            if y != z:
+                break
+            res = res | y
+            x = x >> 1
+
+        return res
+
+        '''
+        #### Done by converting to string - PASSED ALL Test cases
         def int_to_bin_str(num):
             if num == 0:
                 return \0\
@@ -43,53 +65,4 @@ class Solution:
             s += \0\
         
         return bin_str_to_int(s)
-
-
-
-
-
         '''
-        ######### Failing many test cases
-        # if (left << 1) <= right:
-        #     return 0
-        y = 1
-        while y<left:
-            y = y << 1
-            y = y | 1
-        print(bin(y))
-
-        z = 1
-        while z<right:
-            z = z<<1
-            z = z | 1
-        print(bin(z))
-
-        if y != z:
-            return 0
-
-        # odd_r = right & 1
-        # odd_l = left & 1
-
-        diff = right - left
-        print(bin(diff))
-
-        if diff & 1 and left & 1: # diff is odd and left is odd
-            x = 10
-        else:
-            x = 1
-
-
-        while diff>=x:
-            y = y ^ x
-            # if y != temp_y:
-
-            x = x << 1
-        print(bin(y))
-
-        return z & left
-        '''
-
-
-
-        
-        
