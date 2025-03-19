@@ -1,7 +1,7 @@
 class Solution:
     def rangeBitwiseAnd(self, left: int, right: int) -> int:
         x=0
-        while left and right and left != right:
+        while  left != right and left and right:
             left >>= 1
             right >>= 1
             x += 1
