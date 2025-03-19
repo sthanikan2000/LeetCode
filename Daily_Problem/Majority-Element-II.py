@@ -2,6 +2,10 @@ class Solution:
     def majorityElement(self, nums: List[int]) -> List[int]:
         # since condition is more than floor(n/3)
         # there can be either one or two elements, not more than that
+
+        '''
+        ### Passes all test cases but can be optimized for better performance
+        ### Need to have a HASH TABLE to store counts
         if len(nums) == 1:
             return nums
         counts = {nums[0]:1}
@@ -39,42 +43,41 @@ class Solution:
         return x
 
         '''
-        #### This code fails for some test cases
-        f_m=[nums[0],1]
+
+        #### Solution uses O(1) space complexity
+        f_m=[None,0]
         s_m=[None,0]
-        for i in nums[1:]:
+        for i in nums:
+            # print(f_m, s_m)
             if i == f_m[0]:
                 f_m[1]+=1
                 continue
-            
-            if s_m[0] == i:
+            if i == s_m[0]:
                 s_m[1]+=1
                 continue
-            
-            if s_m[0] == None:
-                s_m = [i,1]
+            if f_m[1] == 0:
+                f_m = [i,1]
                 continue
-
-            s_m[1] -= 1
             if s_m[1] == 0:
                 s_m = [i,1]
-
+                continue
+        
             f_m[1] -= 1
-            if f_m[1] == 0:
-                f_m = s_m
-                s_m = [None,0]
+            s_m[1] -= 1
+            
+        c1 = c2 = 0
+        for i in nums:
+            if i == f_m[0]:
+                c1 += 1
+            elif i == s_m[0]:
+                c2 += 1
 
         x=[]
-        if len(nums)<=3:
-            x.append(f_m[0])
-            if s_m[0]:
-                x.append(s_m[0])
-            return x
-            
-        
-        if f_m[1] > 0:
-            x.append(f_m[0])
-        if s_m[1] > 1:
-            x.append(s_m[0])
+        con = len(nums)//3      
+        if f_m[0] != None and c1>con:
+            x.append(f_m[0])  
+        if s_m[0] != None and c2>con:
+            x.append(s_m[0])  
+
         return x
-        '''
+        
