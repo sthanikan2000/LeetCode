@@ -10,17 +10,16 @@ class Solution:
         if (not root):
             return 0
         q=[root]
-        d=1
+        d=0
         while q:
-            next_q=[]
-            for i in range(len(q)):
-                if q[i].left:
-                    next_q.append(q[i].left)
-                if q[i].right:
-                    next_q.append(q[i].right)
-            if next_q:
-                d+=1
-            q = next_q
+            len_q = len(q)
+            for i in range(len_q):
+                x = q.pop(0)
+                if x.left:
+                    q.append(x.left)
+                if x.right:
+                    q.append(x.right)
+            d+=1
         return d
 
         
