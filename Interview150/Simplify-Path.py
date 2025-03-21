@@ -6,17 +6,9 @@ class Solution:
             if dir == \\ or dir == \.\:
                 continue
             elif dir == \..\:
-                if not stack:
-                    continue
-                else:
+                if stack:
                     stack.pop()
             else:
                 stack.append(dir)
-        if not stack:
-            return \/\
-        red = \/\ + \/\.join(stack)
-        # if len(stack) == 1:
-        #     return red + \/\
-        return red
-    
+        return \/\ + \/\.join(stack)    
         
