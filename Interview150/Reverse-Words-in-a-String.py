@@ -1,5 +1,6 @@
 class Solution:
     def reverseWords(self, s: str) -> str:
+        '''
         res = \\
         l=r=0
         n = len(s)
@@ -23,6 +24,11 @@ class Solution:
                 else:
                     res = s[l:r] + res
         return res
+        '''
+        res = s.split()
+        for i in range(len(res)//2):
+            res[i],res[-(i+1)] = res[-(i+1)],res[i]
+        return \ \.join(res)
 
                 
 
