@@ -4,8 +4,23 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
+        ### Beats 100% time complexity
+        if not root:
+            return 0
+        q = [(root,1)]
+        while q:
+            x,d = q.pop(0)
+            if not x.left and not x.right:
+                return d
+            if x.left:
+                q.append((x.left,d+1))
+            if x.right:
+                q.append((x.right,d+1))
+        '''
+        ### Only beat 82% time complexity
         if not root:
             return 0
         d = 1 
@@ -21,7 +36,7 @@ class Solution:
                 if x.right:
                     q.append(x.right)
             d+=1
-                
+        '''      
 
         '''
         ### Recursion Approach but not Optimal
