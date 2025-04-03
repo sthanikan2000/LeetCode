@@ -19,9 +19,12 @@ class Solution:
         max_diff = 0
         max_val = 0
         for i in range(2,n):
-            max_ele = max(max_ele,nums[i-2])
-            max_diff = max(max_diff,max_ele-nums[i-1])
-            max_val = max(max_val,max_diff*nums[i])
+            if max_ele < nums[i-2]:
+                max_ele = nums[i-2]
+            if max_diff < max_ele-nums[i-1]:
+                max_diff = max_ele-nums[i-1]
+            if max_val<max_diff*nums[i]:
+                max_val = max_diff*nums[i]
         return max_val
     
 
