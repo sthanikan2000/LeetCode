@@ -15,14 +15,17 @@ class Solution:
             num = num1
         else:
             num = num2
-        for i in range(-min_len-1,-len(num)-1,-1):
-            x = int(num[i]) + carry
-            if x>9:
-                carry = 1
-                output = str(x-10) + output
-            else:
-                carry = 0
-                output = str(x) + output
+        if carry:
+            for i in range(-min_len-1,-len(num)-1,-1):
+                x = int(num[i]) + carry
+                if x>9:
+                    carry = 1
+                    output = str(x-10) + output
+                else:
+                    carry = 0
+                    output = str(x) + output
+        else:
+            return num[-len(num):-min_len] + output
         if carry:
             return \1\ + output
         else:
