@@ -9,28 +9,26 @@ class Solution:
         \\\
         Do not return anything, modify root in-place instead.
         \\\
-        if not root:
-            return
-        root_l = root.left
-        root_r = root.right
-
-        current = [root]
-        current[0].left = None
-        current[0].right = None
-        def flat(root: Optional[TreeNode],current):
+        
+        global_storage =  {\current\:None}
+        def flat(root: Optional[TreeNode],storage):
+            if not root:
+                return
             root_l = root.left
             root_r = root.right
-            
-            current[0].right = root
-            current[0] = current[0].right
-            current[0].left=None
-            current[0].right=None
-            if root_l:
-                flat(root_l,current)
-            if root_r:
-                flat(root_r,current)
-        if root_l:
-            flat(root_l,current)
-        if root_r:
-            flat(root_r,current)
+            current = storage[\current\]
+            if current==None:
+                current = root
+                current.left = None
+                current.right = None
+                storage[\current\] = current
+            else:
+                current.right=root
+                current = current.right
+                current.left = None
+                current.right = None
+                storage[\current\] = current
+            flat(root_l,storage)
+            flat(root_r,storage)
+        flat(root,global_storage)
         return root
