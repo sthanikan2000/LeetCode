@@ -9,6 +9,7 @@ class Node:
 
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        ### using a hash map for reference
         if not head:
             return 
         old_new_ref = {}
