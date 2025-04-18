@@ -10,14 +10,14 @@ class Solution:
         queue = [root]
         total = 0
         while queue:
-            temp = []
-            for node in queue:
+            len_q = len(queue)
+            for _ in range(len_q):
+                node = queue.pop(0)
                 total += node.val
                 if node.left:
-                    temp.append(node.left)
+                    queue.append(node.left)
                 if node.right:
-                    temp.append(node.right)
-            res.append(total/len(queue))
+                    queue.append(node.right)
+            res.append(total/len_q)
             total = 0
-            queue = temp
         return res
